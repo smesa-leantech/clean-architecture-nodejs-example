@@ -1,4 +1,4 @@
-import { ProjectRepository } from "../../../domain/repositories/project.repository";
+import { ProjectRepository } from "../../../domain/ports/project.repository";
 
 type DeleteProjectRepository = Pick<ProjectRepository, "delete">;
 

@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { ProjectRepository } from '../../../modules/projects/domain/repositories/project.repository';
+import { ProjectRepository } from '../../../modules/projects/domain/ports/project.repository';
 import { Project } from '../../../modules/projects/domain/entities/project.entity';
 import { DatabaseError } from '../../errors/database.error';
 import { DatabaseConnection } from '../database.connection';

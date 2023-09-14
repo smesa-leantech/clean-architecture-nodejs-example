@@ -1,5 +1,5 @@
 import { createProject } from '../../../projects/application/create-project';
-import { ProjectRepository } from '../../../projects/domain/project.repository';
+import { ProjectRepository } from './../../domain';
 import { ProjectService } from '../../../projects/domain/project.service';
 import { ProjectInput } from '../../../projects/domain/project.types';
 

@@ -28,9 +28,9 @@ export const ProjectController = (
   const create = async (req: Request, res: Response) => {
     try {
       const projectToCreate = mapperToProjectInputType(req.body);
-      const creationResponse = await createProjectUseCase(repository)(
-        projectToCreate
-      );
+      const creationResponse = await createProjectUseCase({
+        create: repository.create,
+      })(projectToCreate);
       res.status(201).json(creationResponse);
     } catch (error: unknown) {
       res.status(400).json({ message: Error((error as Error).message) });
@@ -40,7 +40,9 @@ export const ProjectController = (
   const _delete = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      await deleteProjectUseCase(repository)(id);
+      await deleteProjectUseCase({
+        delete: repository.delete,
+      })(id);
       res.status(204).send();
     } catch (error: unknown) {
       res.status(400).json({ message: Error((error as Error).message) });
@@ -50,7 +52,9 @@ export const ProjectController = (
   const get = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const project = await getProjectUseCase(repository)(id);
+      const project = await getProjectUseCase({
+        findById: repository.findById,
+      })(id);
       res.status(200).json(project);
     } catch (error: unknown) {
       res.status(400).json({ message: Error((error as Error).message) });
@@ -59,7 +63,9 @@ export const ProjectController = (
 
   const getAll = async (req: Request, res: Response) => {
     try {
-      const projects = await getProjectsUseCase(repository)();
+      const projects = await getProjectsUseCase({
+        findAll: repository.findAll,
+      })();
       res.status(200).json(projects);
     } catch (error: unknown) {
       res.status(400).json({ message: Error((error as Error).message) });
@@ -70,10 +76,10 @@ export const ProjectController = (
     try {
       const { id } = req.params;
       const projectUpdate = mapperToProjectUpdateType(req.body);
-      const updateResponse = await updateProjectUseCase(repository)(
-        id,
-        projectUpdate
-      );
+      const updateResponse = await updateProjectUseCase({
+        findById: repository.findById,
+        update: repository.update,
+      })(id, projectUpdate);
       res.status(200).json(updateResponse);
     } catch (error: unknown) {
       res.status(400).json({ message: Error((error as Error).message) });

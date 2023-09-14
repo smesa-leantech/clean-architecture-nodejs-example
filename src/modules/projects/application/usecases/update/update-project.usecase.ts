@@ -1,5 +1,5 @@
 import { ProjectUpdateType } from "../../../domain";
-import { ProjectRepository } from "../../../domain/repositories/project.repository";
+import { ProjectRepository } from "../../../domain/ports/project.repository";
 
 type UpdateProjectsRepository = Pick<ProjectRepository, "findById" | "update">;
 
