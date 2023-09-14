@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import { ConfigType } from "../config";
 import { setProjectRoutes } from "./routes/project.routes";
 import { errorMiddleware } from "./middleware/error.middleware";
-import { CreateProjectController } from "../factories";
+import { CreateProjectController } from "../../modules/projects/infrastructure/factories";
 
 export const Server = (config: ConfigType) => {
   const app: Application = express();
